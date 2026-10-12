@@ -20,11 +20,11 @@ int main() {
         explore_size_dependency(sizes, 5.0);
     }
     catch (const char* msg) {
-        cerr << "Error: " << msg << endl;
+        cout << "Error: " << msg << endl;
         return 1;
     }
     catch (const exception& e) {
-        cerr << "Standard Error: " << e.what() << endl;
+        cout << "Standard Error: " << e.what() << endl;
         return 1;
     }
     return 0;
