@@ -8,7 +8,8 @@ int main() {
     try {
         cout << "Task 9" << endl;
         int p = 50;
-        cout << "Board size: " << p << "x" << p << " (" << p * p << " cells)\n";
+        int pp = p * p;
+        cout << "Board size: " << p << "x" << p << " (" << pp << " cells)\n";
         run_experiment(p, 2500);
         run_experiment(p, 12500);
         run_experiment(p, 25000);
