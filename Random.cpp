@@ -3,7 +3,7 @@
 #include <iostream>
 #include <numeric>
 #include <functional>
-#include <format>
+#include <iomanip>
 #include <exception>
 
 using namespace std;
@@ -16,8 +16,7 @@ RandomCellGenerator::RandomCellGenerator(int board_size) : p(board_size) {
     d = uniform_int_distribution<int>(0, board_size - 1);
 
     random_device r;
-    seed_seq seeds{ r(), r(), r(), r(), r(), r() };
-    e = mt19937(seeds);
+    e = mt19937(r());
 }
 
 Cell RandomCellGenerator::operator()() {
@@ -30,7 +29,7 @@ int RandomCellGenerator::get_board_size() const {
 
 void run_experiment(int n, long long m) {
     if (m <= 0) {
-        cout << format("m = {0} | Skipping empty experiment\n", m);
+        cout << "m = " << m << " | Skipping empty experiment\n";
         return;
     }
 
@@ -87,14 +86,18 @@ void run_experiment(int n, long long m) {
     double deviation = mean - expected_ratio;
     if (deviation < 0) deviation = -deviation;
 
-    auto s = format("m = {0:<10} | m/n^2 = {1:<6.2f} | Mean = {2:<6.2f} | Median = {3:<6.2f} | Max mult = {4:<6} | Dev = {5:<6.2f}\n",
-        m, expected_ratio, mean, median, max_mult, deviation);
-    cout << s;
+    cout << left
+        << "m = " << setw(10) << m
+        << " | m/n^2 = " << fixed << setprecision(2) << setw(6) << expected_ratio
+        << " | Mean = " << setw(6) << mean
+        << " | Median = " << setw(6) << median
+        << " | Max mult = " << setw(6) << max_mult
+        << " | Dev = " << setw(6) << deviation << "\n";
 }
 
 void explore_size_dependency(const VInt& sizes, double ratio) {
-    cout << format("\nSize dependency (m/n^2 = {0:.2f} fixed):\n", ratio);
-    cout << "n         Mean        Median\n";
+    cout << "\nSize dependency (m/n^2 = " << fixed << setprecision(2) << ratio << " fixed):\n";
+    cout << left << setw(10) << "n" << setw(15) << "Mean" << "Median\n";
 
     for (int n : sizes) {
         long long m = (long long)(ratio * double(n) * double(n));
@@ -128,6 +131,8 @@ void explore_size_dependency(const VInt& sizes, double ratio) {
         double median = (sz % 2 != 0) ? double(multiplicities[sz / 2])
             : (double(multiplicities[sz / 2 - 1]) + double(multiplicities[sz / 2])) / 2.0;
 
-        cout << format("{0:<10}{1:<15.4f}{2:.4f}\n", n, mean, median);
+        cout << left << setw(10) << n
+            << fixed << setprecision(4) << setw(15) << mean
+            << median << "\n";
     }
 }
