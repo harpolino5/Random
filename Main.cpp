@@ -13,7 +13,7 @@ int main() {
         run_experiment(p, 2500);
         run_experiment(p, 12500);
         run_experiment(p, 25000);
-        run_experiment(p, 125000);
+        run_experiment(p, 50000);
         run_experiment(p, 250000);
 
         VInt sizes = { 10, 20, 30, 40, 50, 70, 100 };
