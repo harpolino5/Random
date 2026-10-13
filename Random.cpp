@@ -46,7 +46,7 @@ void run_experiment(int n, long long m) {
         });
 
     if (!bounds_ok) {
-        throw "Generated cells are out of bounds!";
+        throw "Generated cells are outside our box";
     }
 
     sort(cells.begin(), cells.end(), [](const Cell& x, const Cell& y) {
@@ -86,7 +86,7 @@ void run_experiment(int n, long long m) {
     double deviation = mean - expected_ratio;
     if (deviation < 0) deviation = -deviation;
 
-    cout << left
+    cout <<
         << "m = " << setw(10) << m
         << " | m/n^2 = " << fixed << setprecision(2) << setw(6) << expected_ratio
         << " | Mean = " << setw(6) << mean
