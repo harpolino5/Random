@@ -5,7 +5,7 @@
 #include <random>
 #include <vector>
 
-using VInt = std::vector<int>;
+using My_Vector = std::vector<int>;
 
 struct Cell {
     int a = 0;
@@ -27,6 +27,6 @@ public:
 };
 
 void run_experiment(int n, long long m);
-void explore_size_dependency(const VInt& sizes, double ratio);
+void explore_size_dependency(const My_Vector& sizes, double ratio);
 
 #endif
