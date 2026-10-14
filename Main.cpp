@@ -16,7 +16,7 @@ int main() {
         run_experiment(p, 50000);
         run_experiment(p, 250000);
 
-        VInt sizes = { 10, 20, 30, 40, 50, 70, 100 };
+        My_Vector sizes = { 10, 20, 30, 40, 50, 70, 100 };
         explore_size_dependency(sizes, 5.0);
     }
     catch (const char* msg) {
